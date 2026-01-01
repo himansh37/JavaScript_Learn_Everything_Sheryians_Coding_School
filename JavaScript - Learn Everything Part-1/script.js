@@ -528,6 +528,135 @@ this two will be discussed later
 - for...of
 
 --------------------------------------------------------------------------------------------------------
+-->funtions
+A function is a reusable block of code that performs a specific task. It allows you to encapsulate logic and execute it multiple times with different inputs.
+it doesnt run until we call it unlike loops.
+
+function declaration
+function functionName(parameters){
+    //code to be executed
+    }
+    
+    function call
+    functionName(arguments);
+//function _newywar(){}//this is valid function name
+    
+//function statement vs function expression
+Function statement:
+function greet() {
+    console.log("Hello!");
+}   
+Function Expression:
+const greet = function() {
+    console.log("Hello!");
+};
+//both can be called using greet();
+
+//fat arrow function
+const functionName = (parameters) => {
+    //code to be executed
+}
+funtionName(arguments);
+
+--------------------------------------------------------------------------
+
+->arguments vs parameters
+e.g.:
+function add(a, b) { //a and b are parameters
+    return a + b;
+}
+console.log(add(5, 10)); //5 and 10 are arguments
+
+->default parameters
+e.g.:
+function greet(name = "Guest") { //default parameter
+    console.log(`Hello, ${name}!`);
+}   
+greet(); // Output: "Hello, Guest!"
+greet("Alice"); // Output: "Hello, Alice!"  
+
+//when we done pass argument value of parameter will be default value
+//NaN will come when we do arithmetic operation with undefined
+------------------------------------------------------------------
+
+-->rest operator in functions
+jab arguments kai saare ho to humein utne hi parameters banane padenge, issey bachne  ke liye hum rest operator use karte hai ... function ke parameter space main laga to wo rest opertor hai.
+e.g.:
+function sum(...numbers) { //rest operator
+ console.log(numbers); // Output: [1, 2, 3, 4, 5]
+ let total = 0; 
+    for (let num of numbers) {  
+        total += num;
+    }   
+    return total;
+}
+console.log(sum(1, 2, 3, 4, 5)); // Output: 15
+
+-----------------------------------------------------------------
+
+-->return statement in functions
+e.g.:
+function multiply(a, b) {
+    return a * b; //return statement
+}
+
+//multiply(5, 10) === 50
+console.log(multiply(5, 10)); // Output: 50
+
+------------------------------------------------------------------
+-->first class functions
+functions ko hum variables ki tarah treat kar sakte hai
+
+1. Assigning functions to variables
+const greet = function(name) {
+    return `Hello, ${name}!`;
+};
+   greet("Himanshu"); // Output: "Hello, Himanshu!"
+
+2. Passing functions as arguments to other functions
+function performOperation(a, b, operation) {
+    return operation(a, b);
+}
+const add = function(x, y) {
+    return x + y;
+}
+console.log(performOperation(5, 10, add)); // Output: 15
+
+3. Returning functions from other functions
+function createMultiplier(factor) {
+    return function(number) { //anonymous function
+        return number * factor;
+    };
+} 
+const double = createMultiplier(2);
+console.log(double(5)); // Output: 10
+
+in professional JavaScript, it is very common to leave these inner functions anonymous or use Arrow Functions (modern syntax) like this:
+
+function createMultiplier(factor) {
+    return (number) => number * factor; // Still anonymous!
+}
+
+//one more example
+function abcd(val){
+val();
+}
+abcd(function(){ //keep in mind no naming for this function
+console.log("Hello World");
+});
+
+output: Hello World
+
+----------------------------------------------------------------
+
+-->higher order functions
+wo function hota hai jo ki return kare function ya fir accept kare function as parameter 
+e.g.:
+above function abcd is higher order function because it accept function as parameter
+
+above function createMultiplier(factor) is also higher order function because it return function
+
+
 
 
 
