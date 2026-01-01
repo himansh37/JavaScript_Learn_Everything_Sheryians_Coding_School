@@ -656,13 +656,94 @@ above function abcd is higher order function because it accept function as param
 
 above function createMultiplier(factor) is also higher order function because it return function
 
+----------------------------------------------------------------
+
+pure functions vs impure functions
+
+A function is considered "pure" if it meets two strict rules:
+1) Deterministic: Given the same input, it will always return the same output.
+2) No Side Effects: It does not change anything outside of itself (like global variables, the DOM, or console logs).
+e.g.:
+function addPure(a, b) {
+    return a + b;
+}
+console.log(addPure(2, 3)); // Always returns 5
+console.log(addPure(2, 3)); // Always returns 5
+
+->A function is "impure" if it violates either of the rules above.
+1) Non-Deterministic: It might return different results even if you pass the same arguments (e.g., uses random numbers or time).
+2) Has Side Effects: It modifies variables outside its scope, modifies the DOM, fetches data, or logs to the console.
+e.g.:
+let total = 0; // External state
+function addToTotal(amount) {
+    total = total + amount; // Side effect!
+    return total;
+}
+console.log(addToTotal(5)); // Returns 5
+console.log(addToTotal(5)); // Returns 10 (Different output for same input!)
+
+another example is using math.random() function
+
+----------------------------------------------------------------
+
+-->closures
+ek function jo return kare ek aur function aur return hone wala function humesha use karega parent function ka koi variable 
+e.g.:
+funtion abcd(){
+    let count = 1;
+return function(){
+    console.log(count);
+    count++;
+}}
+let myFunction = abcd();
+myFunction(); // Output: 1
+myFunction(); // Output: 2
+
+-->lexical scope 
+e.g.:
+function abcd(){
+let a =12;
+function defg(){
+    let b = 23;
+    function xyz(){
+        let c =34;
+}}}
+lexical scope of a is abcd, defg, xyz
+lexical scope of b is defg, xyz
+lexical scope of c is xyz
+
+------------------------------------------------------------------
+IIFE(Immediately Invoked Function Expression)
+e.g.:
+(function(){
+console.log("Hello World");})()
+
+//this function will run immediately after defining it
+
+ --------------------------------------------------------------------------
+
+-->hoisting in statement function vs expression function
+
+->function statement hoisting
+abcd(); // Output: "Function Statement Called"
+
+function abcd() {
+    console.log("Function Statement Called");
+}
+//function statement is hoisted completely
+
+->function expression hoisting
+//efgh(); // Error: efgh is not a function
+
+const efgh = function() {
+    console.log("Function Expression Called");
+};
+//function expression is not hoisted like function statement
+
+--------------------------------------------------------------------------
 
 
 
-
-
-
- 
 
 
 
