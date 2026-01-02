@@ -742,9 +742,409 @@ const efgh = function() {
 
 --------------------------------------------------------------------------
 
+good question
+1) function outer(){
+    let count =0;
+    return function ()
+    {
+        count++;
+        console.log(count);
+    };
+}
+    const counter = outer();
+    counter(); // Output: 1 
+    counter(); // Output: 2
+
+    explanation:
+    1. The outer function is called, which initializes count to 0 and returns the inner function.
+    2. The returned inner function is assigned to the variable counter.
+    3. Each time counter() is called, it increments count by 1 and logs the updated value.
+
+2) reusable discount calculator using HOF
+
+funtion mainf(discount){
+return function(price){
+return price - (price * discount)/100;} 
+
+const tenPercentDiscount = mainf(10);
+const twentyPercentDiscount = mainf(20);
+
+const price1 = tenPercentDiscount(1000); // Output: 900
+const price2 = twentyPercentDiscount(1000); // Output: 800
+
+3) build a counter using closure
+
+function outer(){
+    let count =0;
+    return function(){
+    count++;
+    return count;
+    }  }
+
+    const counter = outer();
+    console.log(counter()); // Output: 1
+    console.log(counter()); // Output: 2
+    console.log(counter()); // Output: 3
+
+    const anotherCounter = outer();
+    console.log(anotherCounter()); // Output: 1
+
+    explanation:
+    1. The outer function initializes count to 0 and returns the inner function.
+    2. Each time counter() is called, it increments and returns the count specific to that closure.
+    3. anotherCounter() creates a new closure with its own count variable, independent of counter().
+
+4) use IIFE to create a private variable
+    (funtion(){
+    let password = "secret123";
+    console.log( password); // Output: secret123
+    })();
+
+    console.log(password); // Error: password is not defined
+
+
+--------------------------------------------------------------------------
+
+-->Arrays
+
+//initialization of array
+let marks = [85, 90, 78, 92, 88];
+
+indexing in array
+//index starts from 0
+//marks[0] = 85
+//marks[1] = 90 ans so on
+
+console.log(marks[5]); // Output: undefined (index 5 does not exist
+
+//modifying array elements
+marks[2] = 80; // Changing the value at index 2
+console.log(marks); // Output: [85, 90, 80, 92, 88]
+
+->array methods
+1.push()
+e.g.:
+let fruits = ["apple", "banana"];
+fruits.push("orange"); // Adding "orange" to the end
+console.log(fruits); // Output: ["apple", "banana", "orange"]
+
+2.pop()
+e.g.:
+let fruits = ["apple", "banana", "orange"];
+let removedFruit = fruits.pop(); // Removing the last element
+console.log(removedFruit); // Output: "orange"
+console.log(fruits); // Output: ["apple", "banana"]
+
+3.shift()
+e.g.:
+let fruits = ["apple", "banana", "orange"];
+let removedFruit = fruits.shift(); // Removing the first element
+console.log(removedFruit); // Output: "apple"
+console.log(fruits); // Output: ["banana", "orange"]
+
+4.unshift()
+e.g.:
+let fruits = ["banana", "orange"];
+fruits.unshift("apple"); // Adding "apple" to the beginning
+console.log(fruits); // Output: ["apple", "banana", "orange"]
+
+5. slice()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+let subArray = numbers.slice(1, 4); // Extracting elements from index 1 to 3
+console.log(subArray); // Output: [2, 3, 4]
+
+let subArray2 = numbers.slice(2,8); //if end index is greater than array length then it will take array length as end index
+console.log(subArray2); // Output: [3, 4, 5]
+
+6. splice()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+numbers.splice(2, 1, 10, 11); // Starting at index 2, remove 1 element and add 10 and 11
+console.log(numbers); // Output: [1, 2, 10, 11, 4, 5]
+
+let numbers2 = [1, 2, 3, 4, 5];
+numbers2.splice(3, 0, 20, 21); // Starting at index 3, remove 0 elements and add 20 and 21
+console.log(numbers2); // Output: [1, 2, 3, 20, 21, 4, 5]
+
+let numbers3 = [1, 2, 3, 4, 5];
+numbers3.splice(1, 9); //if delete count is greater than available elements then it will delete all available elements from start index
+console.log(numbers3); // Output: [1]
+
+another way of using splice to add elements at end
+let numbers4 = [1, 2, 3, 4, 5];
+numbers4.splice(numbers4.length, 0, 30, 31); // Adding 30 and 31 at the end
+console.log(numbers4); // Output: [1, 2, 3, 4, 5, 30, 31]
+
+7. reverse()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+numbers.reverse();
+console.log(numbers); // Output: [5, 4, 3, 2, 1]
+
+7. sort()
+e.g.:
+let numbers = [3, 1, 4, 2, 5];
+numbers.sort((a, b) => a - b);  
+numbers.sort(function(a,b){return a-b}); //ascending order
+
+numbers.sort((a, b) => b - a);
+//numbers.sort(function(a,b){return b-a}); //descending order
+
+console.log(numbers); // Output: [1, 2, 3, 4, 5] ascending order
+//console.log(numbers); // Output: [5, 4, 3, 2, 1] descending order
+
+8. forEach()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];  
+numbers.forEach((num) => {
+    console.log(num * 2);
+}); // Output: 2 4 6 8 10
+ 
+9.map()
+
+//map likhte hi soch lo ki ek naya array banega. uski length original array jaisi hi hogi.vo har element pe jayega original array ka aur us element pe jo bhi operation karoge vo naya array mein add ho jayega.
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+let doubled = numbers.map((num) => {return num * 2});
+console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
+//num me ek ek karke original array ke element jayenge aur unpe jo bhi operation karoge vo naya array mein add ho jayega.
+
+//if we perform operation and it not return anything then undefined will be added in new array
+let numbers2 = [1, 2, 3, 4, 5];
+let doubled2 = numbers2.map((num) => {console.log(num * 2);});  
+console.log(doubled2); // Output: [undefined, undefined, undefined, undefined, undefined]  
+
+//new arry always have same length as original array.. other elemts get undefined if nothing is returned
+
+10. filter()
+e.g.:
+let numbers = [1, 2, 3, 4, 5, 6]; 
+
+let evenNumbers = numbers.filter((num) => { return num % 2 === 0; });
+console.log(evenNumbers); // Output: [2, 4, 6]
+
+11. reduce()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+let sum = numbers.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+}, 0);
+console.log(sum); // Output: 15
+
+//accumulator is 0 because we have given 0 as initial value at end.. accumulator apni yaad rakhta hai.. aur return hone pe ho accumulator me store ho jata hai.. next iteration mein accumulator wahi se start hota hai
+
+12.find()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+let found = numbers.find((num) => { return num > 3; });
+console.log(found); // Output: 4
+
+//always return first matched element
+
+13. some()
+e.g.:
+let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some((num) => { return num % 2 === 0; });
+console.log(hasEven); // Output: true
+//return true if at least one element match the condition
+
+14.every()
+e.g.:
+let numbers = [2, 4, 6, 8]; 
+let allEven = numbers.every((num) => { return num % 2 === 0; });
+console.log(allEven); // Output: true
+//return true if all elements match the condition
+//if one is not matching then it will return false
+
+------------------------------------------------------------------
+
+->destructuring in arrays
+let arr = [10, 20, 30, 40, 50];
+let [a, b, ,c] = arr; //array destructuring
+console.log(a); // Output: 10
+console.log(b); // Output: 20
+console.log(c); // Output: 40
+
+->spread operator in arrays
+let arr1 = [1, 2, 3, 4, 5,6,7,8,9];
+let arr2 = arr1; //reference copy 
+//if we change arr2 then arr1 will also change because both are pointing to same reference
+
+//this way we made copy of array using spread operator
+let arr2=[...arr1,10,11]; //spread operator
+console.log(arr2); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+--------------------------------------------------------------------------
+-->Objects
+
+let obj= {
+    name: "Himanshu", //key:value pair/structure
+    age: 21,
+    isStudent: true 
+    location: {
+        city: "New York",
+        country: "USA"
+    },
+    hobbies: ["reading", "traveling", "coding"]
+};
+//accessing object properties
+obj.name; // Output: "Himanshu"
+obj['age']; // Output: 21
+
+//how to acces using variable as key
+let isStudentKey = 'isStudent';
+obj[isStudentKey]; // Output: true
+obj.isStuentkey; // Output: undefined
+
+//yaad rakhna . key baad exact match karna chahiye case sensitive hota hai par agar [] mein likho to variable ke andar jo bhi value hogi wo key ban jayegi.
+
+nesting and deep access    
+obj.location.city; // Output: "New York"
+
+-->object destructuring
+let {name, age, location: {city}} = obj;
+console.log(name); // Output: "Himanshu"
+console.log(age); // Output: 21
+console.log(city); // Output: "New York"
+
+other way of destructuring
+let {city, country} = obj.location;
+console.log(city); // Output: "New York"
+console.log(country); // Output: "USA"
+
+-->looping through objects
+for (let key in obj) {
+    console.log(`${key}: ${obj[key]}`);
+}
+// Output:
+// name: Himanshu
+// age: 21
+// isStudent: true
+// location: [object Object]
+// hobbies: reading,traveling,coding        
+
+how location is printed as [object Object] because it is nested object 
+
+how to access nested object
+for (let key in obj.location) {
+    console.log(`${key}: ${obj.location[key]}`);
+}
+
+->Objects.keys(), Objects.values(), Objects.entries()
+e.g.:
+let keys = Object.keys(obj);
+console.log(keys); // Output: ["name", "age", "isStudent", "location", "hobbies"]
+
+let values = Object.values(obj);
+console.log(values); // Output: ["Himanshu", 21, true, {city: "New York", country: "USA"}, ["reading", "traveling", "coding"]]
+
+let entries = Object.entries(obj);
+console.log(entries); 
+// Output: [["name", "Himanshu"], ["age", 21], ["isStudent", true], ["location", {city: "New York", country: "USA"}], ["hobbies", ["reading", "traveling", "coding"]]]
+
+------------------------------------------------------------------
+
+-->copying objects
+
+->spread operator
+let obj2 = {...obj, profession: "Student"};
+console.log(obj2); 
+// Output: {name: "Himanshu", age: 21, isStudent: true, location: {city: "New York", country: "USA"}, hobbies: ["reading", "traveling", "coding"], profession: "Student"
+
+->Object.assign()
+let obj3 = Object.assign({}, obj, { profession: "Student" });
+console.log(obj3); 
+// Output: {name: "Himanshu", age: 21, isStudent: true, location: {city: "New York", country: "USA"}, hobbies: ["reading", "traveling", "coding"], profession: "Student"
+
+-> Deep Copying
+let obj4 = JSON.parse(JSON.stringify(obj));
+console.log(obj4); 
+// Output: {name: "Himanshu", age: 21, isStudent: true, location: {city: "New York", country: "USA"}, hobbies: ["reading", "traveling", "coding"]
+
+why need of deep copying?
+let obj5 = {...obj};
+obj5.location.city = "Los Angeles";
+console.log(obj.location.city); // Output: "Los Angeles" (original object is affected)
+//because location is nested object so shallow copy will not work here.
+
+------------------------------------------------------------------
+
+-->Optional Chaining (?.)
+let user = {
+    name: "Himanshu",
+    address: {
+        city: "New York",
+        zip: "10001"
+    }
+};
+console.log(user.address?.city); // Output: "New York"
+console.log(user.contact?.phone); // Output: undefined (no error thrown)
+console.log(user.contact.phone); // Error: Cannot read property 'phone' of undefined
+
+-->computer property names in objects
+let key = "age";
+let person = {
+    name: "Himanshu",
+    [key]: 21 //computed property name
+};
+console.log(person.age); // Output: 21
+
+------------------------------------------------------------------
+
+good question
+1) can an object key be a number or boolean?
+Yes, in JavaScript, object keys can be numbers or booleans. However, they are automatically converted to strings. For example:
+let obj = {
+    1: "one",
+    2: "two",
+    true: "yes",
+    false: "no"
+};
+console.log(obj[1]); // Output: "one"
+console.log(obj[true]); // Output: "yes"
+
+2) access this
+let obj = {
+"first-name": "Himanshu",
+"last-name": "Rai"
+};
+console.log(obj["first-name"]); // Output: "Himanshu"
+console.log(obj.first-name); // Output: NaN (because it is treated as obj.first - name
+
+3)Destructure the key "first-name" as a variable called firstName.
+const user = {
+  "first-name": "Harsh",
+};
+
+let { "first-name": firstName } = user; // Destructuring with alias
+console.log(firstName); // Output: "Harsh"
+
+4)Use Object.entries() to print all key-value pairs as:
+ title: JavaScript
+ duration: 4 weeks
+ const course = {
+  title: "JavaScript",
+  duration: "4 weeks",
+};
+
+Object.entries(course).forEach(function (val) {
+  console.log(val[0] + ": " + val[1]);
+});
 
 
 
 
 
-*/
+
+
+
+
+
+
+
+
+
+
+    */
