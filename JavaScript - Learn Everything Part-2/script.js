@@ -55,7 +55,7 @@ h1.addEventListener("click", function () {
 
 --------------------------------------------------------------------
 
-//->rremoveEventListener
+//->removeEventListener
 //to remove an event listener, you need to define the function separately
 function changeColor() {
   h1.style.color = "blue";
@@ -72,28 +72,30 @@ The Function Reference (changeCol)
 The Event Type (Must be "click", not "dblclick")
 */
 
-//creating toogle
+/*
 
-// let isBlue = false;
+-->creating toogle
 
-// h1.addEventListener("click", () => {
-//   isBlue = !isBlue;
-//   h1.style.color = isBlue ? "#2bb0c8ff" : "black";
-// });
+let isBlue = false;
 
-// function makeBlue() {
-//   h1.style.color = "#2bb0c8ff";
-//   h1.removeEventListener("click", makeBlue);
-//   h1.addEventListener("click", makeBlack);
-// }
+h1.addEventListener("click", () => {
+  isBlue = !isBlue;
+  h1.style.color = isBlue ? "#2bb0c8ff" : "black";
+});
 
-// function makeBlack() {
-//   h1.style.color = "black";
-//   h1.removeEventListener("click", makeBlack);
-//   h1.addEventListener("click", makeBlue);
-// }
+function makeBlue() {
+  h1.style.color = "#2bb0c8ff";
+  h1.removeEventListener("click", makeBlue);
+  h1.addEventListener("click", makeBlack);
+}
 
-// h1.addEventListener("click", makeBlue);
+function makeBlack() {
+  h1.style.color = "black";
+  h1.removeEventListener("click", makeBlack);
+  h1.addEventListener("click", makeBlue);
+}
+
+h1.addEventListener("click", makeBlue);
 let black = "rgb(238, 238, 238)";
 let blue = "rgb(34, 148, 234)";
 h1.style.color = black;
@@ -108,3 +110,69 @@ h1.addEventListener("click", () => {
     console.log("this is also done");
   }
 });
+
+
+----------------------------------------------------------------------------------------------- 
+
+//types of events in js
+
+->mouse events
+e.g.:
+    mousemove-> when the mouse moves over an element 
+    mousedown-> when the mouse button is pressed down on an element
+    mouseup-> when the mouse button is released after being pressed down on an element
+->change events
+e.g.:
+    change-> when the value of an <input> element changes
+
+->scroll events
+e.g.:
+    scroll-> when the user scrolls the page
+
+->click events
+e.g.:
+    click-> when the user clicks on an element
+
+->contextmenu events
+e.g.:
+    contextmenu-> when the user right-clicks on an element
+
+->keyboard events
+e.g.:
+    keydown-> when a key is pressed down
+    keyup-> when a key is released
+
+->input events
+e.g.:
+    input-> when the value of an <input> element changes
+
+->form events
+e.g.:
+    submit-> when a form is submitted
+
+->touch events
+e.g.:
+    touchstart-> when the user starts touching the screen
+    touchmove-> when the user moves their finger on the screen
+    touchend-> when the user stops touching the screen
+
+
+    
+    let input = document.querySelector("input");
+    input.addEventListener("input", (details) => {
+      if (details.data !== null) {
+        console.log(details.data); //ye user input ke details print honge
+        console.dir(input.value); // ye input element ke details print honge
+        }
+        });
+        
+    */
+
+let select = document.querySelector("select");
+let h3 = document.querySelector("h3");
+select.addEventListener("change", (details) => {
+  h3.textContent = `${details.target.value} selected`;
+  //value from select element ke details print honge
+});
+
+//custon input file taker
