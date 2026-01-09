@@ -166,13 +166,99 @@ e.g.:
         }
         });
         
-    */
-
-let select = document.querySelector("select");
-let h3 = document.querySelector("h3");
-select.addEventListener("change", (details) => {
+        
+        let select = document.querySelector("select");
+        let h3 = document.querySelector("h3");
+        select.addEventListener("change", (details) => {
   h3.textContent = `${details.target.value} selected`;
   //value from select element ke details print honge
 });
 
+//project;
 //custon input file taker
+
+//mouse tracker
+let body = document.querySelector("body");
+body.addEventListener("mousemove", (details) => {
+  console.log(details.clientX);
+  console.log(details.clientY);
+});
+
+//key press tracker
+let input = document.querySelector("input");
+input.addEventListener("keydown", (details) => {
+  console.log(details.key);
+});
+
+//scroll tracker
+window.addEventListener("scroll", () => {
+  console.log(window.scrollY);
+});
+
+// ----------------------------------------------------------------------------------
+
+// Event Object
+
+let input = document.querySelector("input");
+input.addEventListener("input", (details) => {
+  console.log(details);
+  console.log(details.target);
+  console.log(details.target.value);
+});
+
+//use of preventDefault() -> to stop the default behaviour
+let form = document.querySelector("form");
+form.addEventListener("submit", (details) => {
+  details.preventDefault();
+  //stop from reloading the page
+  console.log(details);
+  console.log(details.target);
+  console.log(details.target.value);
+});
+
+//use of type in event object
+
+let input = document.querySelector("input");
+input.addEventListener("input", (details) => {
+  console.log(details.type); //
+  console.log(details.target);
+  console.log(details.target.value);
+});
+
+---------------------------------------------------------------------------
+
+//event bubbling and event capturing
+
+let parent = document.querySelector(".parent");
+let child = document.querySelector(".child");
+let grandchild = document.querySelector(".grandchild");
+parent.addEventListener("click", () => {
+  console.log("parent clicked");
+});
+child.addEventListener("click", () => {
+  console.log("child clicked");
+});
+grandchild.addEventListener("click", () => {
+  console.log("grandchild clicked");
+});
+
+//explaination of event bubbling and event capturing
+
+//event capturing-> start from the top
+//event bubbling-> start from the bottom
+
+//event capturing
+let parent = document.querySelector(".parent");
+let child = document.querySelector(".child");
+let grandchild = document.querySelector(".grandchild");
+parent.addEventListener("click", () => {
+  console.log("parent clicked");
+});
+child.addEventListener("click", () => {
+  console.log("child clicked");
+});
+grandchild.addEventListener("click", () => {
+  console.log("grandchild clicked");
+});
+
+*/
