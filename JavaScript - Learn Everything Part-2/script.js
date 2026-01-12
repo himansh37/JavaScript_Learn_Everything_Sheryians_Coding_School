@@ -262,3 +262,26 @@ grandchild.addEventListener("click", () => {
 });
 
 */
+
+//event delegation
+
+let parent = document.querySelector(".parent");
+let child = document.querySelector(".child");
+let grandchild = document.querySelector(".grandchild");
+parent.addEventListener("click", () => {
+  console.log("parent clicked");
+});
+child.addEventListener("click", () => {
+  console.log("child clicked");
+});
+grandchild.addEventListener("click", () => {
+  console.log("grandchild clicked");
+});
+
+parent.addEventListener("click", (e) => {
+  if (e.target.classList.contains("grandchild")) {
+    console.log("grandchild clicked");
+  }
+});
+
+//event delegation is better than event capturing
