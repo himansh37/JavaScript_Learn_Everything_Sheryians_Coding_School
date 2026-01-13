@@ -8,20 +8,133 @@ M = Model (The tree-like structure used to organize these objects)
 
 ------------------------------------------------------------------
 
--->slecting elements using DOM methods
+-->selecting elements using DOM methods
 getElementById
 let element = document.getElementById("idName");
 
 getElementsByClassName
 let elements = document.getElementsByClassName("className");
+//it returns HTMLCollection
 
 getElementsByTagName
+let elements = document.getElementsByTagName("tagName");
+e.g.:
+let h1 = document.getElementsByTagName("h1");
 
 //more important ones
 querySelector
+let element = document.querySelector("#idName");
+first one will be selected
+
 querySelectorAll
+let elements = document.querySelectorAll("#idName");
+all will be selected
+-------------------------------------------------------------------
+
+-->Text/content manipulation using DOM methods
+->textContent
+e.g.:
+let h1 = document.querySelector("h1");
+h1.textContent = "hello";
+
+->innerHTML
+e.g.:
+let h1 = document.querySelector("h1");
+h1.innerHTML = "<span>hello</span>";
+
+->innertext
+e.g.:
+let h1 = document.querySelector("h1");
+h1.innerText = "<span>hello</span>";
+
+//write difference between textContent and innerText and innerHTML. textContent is used for text, innerText is used for html, innerHTML is used for html
+
+<div id="myBox">
+    Hello 
+    <span style="display:none">Hidden Text</span>
+    <strong>World</strong>
+</div>
+
+let box = document.getElementById("myBox");
+// textContent gets EVERYTHING (Even the hidden part)
+console.log(box.textContent); //Output: "Hello Hidden Text World"
+
+// innerText gets ONLY VISIBLE text (Ignores hidden part)
+console.log(box.innerText);//Output: "Hello World"
+
+// innerHTML gets the source code (Tags included!)
+console.log(box.innerHTML); 
+// Output: "Hello <span style='display:none'>Hidden Text</span> <strong>World</strong>"
 
 
+-------------------------------------------------------------------
+Attribute manipulation using DOM methods
+->setAttribute
+e.g.:
+let h1 = document.querySelector("h1");
+h1.setAttribute("style", "color:red"); 
+
+->getAttribute
+e.g.:
+let h1 = document.querySelector("h1");
+h1.getAttribute("style"); //output: "color:red"
+
+->removeAttribute
+e.g.:
+let h1 = document.querySelector("h1");
+h1.removeAttribute("style"); //output: h1 {style: ""}
+
+
+-------------------------------------------------------------------
+
+-->creating and inserting elements using DOM methods
+->createElement
+let element = document.createElement("tagName");
+e.g.:
+let h1 = document.createElement("h1");
+
+->appendChild
+let element = document.createElement("tagName");
+let parentElement = document.getElementById("idName");
+parentElement.appendChild(element);
+e.g.:
+let h1 = document.createElement("h1");
+let h2 = document.createElement("h2");
+
+h1.appendChild(h2);
+document.body.appendChild(h1);
+
+//do i have to append it in body tag? or it will automatically append in body tag by default? no, it will append in body tag by default
+
+->append
+let h1=document.createElement("h1");
+h1.textContent="hello";
+document.body.append(h1); tag will be added after script tag
+
+->prepend
+let h1=document.createElement("h1");
+h1.textContent="hello";
+document.body.prepend(h1); tag will be added before script tag
+
+
+----------------------------------------------------------------------
+-->style update via .style and classList(add,toggle,remove)
+
+->.style
+e.g.:
+let h1 = document.querySelector("h1");
+console.dir(h1);//this will show the style properties of the h1 element
+h1.style.color = "red";
+h1.style.fontFamily = "gilroy";
+
+
+->classList
+in sytle tag create a .classname and write a property in it and if you want to use it in js then use classList.add("classname").All the properties you have written in classname will be applied to the new elemnt
+
+console.dir(h1); in this you can check for classList and see how many classes are there
+h1.classList.add("classname"); //to add a class
+h1.classList.remove("classname"); //to remove a class
+h1.classList.toggle("classname"); //to toggle a class
 
 
 -----------------------------------------------------------------------
