@@ -353,7 +353,7 @@ child.addEventListener("click", () => {
 });
 grandchild.addEventListener("click", () => {
   console.log("grandchild clicked");
-});
+f});
 
 //explaination of event bubbling and event capturing
 
