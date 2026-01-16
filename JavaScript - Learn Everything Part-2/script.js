@@ -374,7 +374,6 @@ grandchild.addEventListener("click", () => {
   console.log("grandchild clicked");
 });
 
-*/
 
 //event delegation
 
@@ -398,3 +397,41 @@ parent.addEventListener("click", (e) => {
 });
 
 //event delegation is better than event capturing
+
+--------------------------------------------------------------------------------
+-->timeout and interval
+
+//setTimeout
+let h1 = document.querySelector("h1");
+setTimeout(() => {
+  h1.textContent = "Changed";
+}, 3000);
+//it will change the text after 3 seconds
+
+//setInterval
+let h1 = document.querySelector("h1");
+setInterval(() => {
+  h1.textContent = "Changed";
+}, 3000);
+//it will change the text every 3 seconds
+
+//clearInterval
+let h1 = document.querySelector("h1");
+let intervalId = setInterval(() => {
+  h1.textContent = "Changed";
+}, 3000);
+//it will change the text every 3 seconds
+clearInterval(intervalId);
+//it will stop the interval
+
+//clearTimeout
+let h1 = document.querySelector("h1");
+let timeoutId = setTimeout(() => {
+  h1.textContent = "Changed";
+}, 3000);
+//it will change the text after 3 seconds
+clearTimeout(timeoutId);
+//it will stop the timeout
+
+
+*/

@@ -1,0 +1,42 @@
+/* General styling for the wrapper to center it and give it space */
+.progress-wrapper {
+  width: 100%;
+  max-width: 500px; /* Limits width on large screens */
+  margin: 50px auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
+}
+
+/* Info text above the bar */
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* The background track of the progress bar */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden; /* Ensures the inner fill doesn't spill out of rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow for depth */
+}
+
+/* The actual colored bar that fills up */
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #4caf50,
+    #81c784
+  ); /* Nice green gradient */
+  border-radius: 10px 0 0 10px;
+
+  /* This is crucial for smooth JS updates */
+  transition: width 0.4s ease-in-out;
+}
