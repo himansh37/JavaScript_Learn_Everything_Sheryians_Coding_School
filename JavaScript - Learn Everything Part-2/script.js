@@ -433,5 +433,52 @@ let timeoutId = setTimeout(() => {
 clearTimeout(timeoutId);
 //it will stop the timeout
 
+--------------------------------------------------------------------------------
+
+//local storage
+->it is used to store data in the browser and it is not deleted when the browser is closed...ye browser ka database hai.
+-> ~5MB data store hota hai
+-> local storage me array object save nahi kar sakte directly.
+e.g.:
+localStorage.setItem("name", "John"); //name naam ki property ho toh update kar dena aur nahi ho toh bana dena.
+let name = localStorage.getItem("name");
+console.log(name); // Output: "John"
+
+localStorage.removeItem("name");
+let name = localStorage.getItem("name");
+console.log(name); // Output: null
+
+localStorage.clear(); //remove everything
+let name = localStorage.getItem("name");
+console.log(name); // Output: null
+
+//session storage
+it is used to store data in the browser and it is deleted when the browser/tab is closed.
+-> ~5MB data store hota hai
+e.g.:
+sessionStorage.setItem("name", "John");
+let name = sessionStorage.getItem("name");
+console.log(name); // Output: "John"
+
+sessionStorage.removeItem("name");
+let name = sessionStorage.getItem("name");
+console.log(name); // Output: null
+
+sessionStorage.clear(); //remove everything
+let name = sessionStorage.getItem("name");
+console.log(name); // Output: null
+
+//cookie
+ye bhi data store karta hai and aapka data browser ke cookies naam ki property mein save hota hai and ye cooki concept kam data ya light data ke liye hota hai.
+-> ~4kb data store hota hai
+-> cookies me jo bhi data store karoge wo data page reload par automatically server par jayega.
+e.g.:
+document.cookie = "name=John";
+let name = document.cookie;
+console.log(name); // Output: "name=John"
+
+document.cookie = "name=himanshu; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+let name = document.cookie;
+console.log(name); // Output: "name=himanshu"
 
 */
