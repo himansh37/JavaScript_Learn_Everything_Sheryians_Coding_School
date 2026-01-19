@@ -438,7 +438,8 @@ clearTimeout(timeoutId);
 //local storage
 ->it is used to store data in the browser and it is not deleted when the browser is closed...ye browser ka database hai.
 -> ~5MB data store hota hai
--> local storage me array object save nahi kar sakte directly.
+-> local storage me array, object save nahi kar sakte directly.
+
 e.g.:
 localStorage.setItem("name", "John"); //name naam ki property ho toh update kar dena aur nahi ho toh bana dena.
 let name = localStorage.getItem("name");
@@ -480,5 +481,18 @@ console.log(name); // Output: "name=John"
 document.cookie = "name=himanshu; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 let name = document.cookie;
 console.log(name); // Output: "name=himanshu"
-
 */
+
+// //Line 441
+localStorage.setItem("name", ["nimo", "KK", "pinky", "nisha"]); // ek single string me store hoga
+let name = localStorage.getItem("name"); //ek single string me data aayega
+
+//JSON.stringify- turn everthing into string
+//e.g
+let num = JSON.stringify([1, 2, 3, 4, 5]);
+//output '[1,2,3,4,5]'
+
+//perfect way to save is
+localStorage.setItem("names", JSON.stringify([1, 2, 3, 4, 5]));
+// let names = localStorage.getItem("names"); //names '[1,2,3,4,5]'
+let names = JSON.parse(localStorage.getItem("names")); //names [1,2,3,4,5]

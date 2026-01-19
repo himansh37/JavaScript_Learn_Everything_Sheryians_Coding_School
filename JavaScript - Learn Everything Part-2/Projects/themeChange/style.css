@@ -1,0 +1,30 @@
+/* Default Light Theme */
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --accent: #007bff;
+}
+
+/* Dark Theme Overrides */
+.dark-theme {
+  --bg-primary: #121212;
+  --text-primary: #f8f9fa;
+  --accent: #bb86fc;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+#theme-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
