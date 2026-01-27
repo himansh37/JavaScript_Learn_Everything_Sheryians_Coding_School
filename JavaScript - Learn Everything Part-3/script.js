@@ -133,17 +133,130 @@ clicker(); //click limit reached
 
 if we try to change click variable from outside it will create a new global variable click and original click variable will remain unchanged.
 
+-----------------------------------------------------
+-->this keyword
+special keyword hai,kyuki jaise ki baki saare keyword ki value ya uske nature same rehata hai this ki value ya nature badal jata hai is baat se ki aap usey kaha use kar rahe ho
 
+//global scope
+console.log(this); // In global scope, 'this' refers to the global object (window in browsers)
 
+//function scope
+function myFunction() {
+    console.log(this); // In a regular function, 'this' refers to the global object (window in browsers)
+}
+myFunction();
 
+// method scope
+ek aisa function jo ki kisi object ke andar defined ho usse method kehte hai.
 
+const person = {
+    name: "John",
+    age: 30,
+    introduce: function () {
+        console.log(this); // In a method, 'this' refers to the object that the method is attached to
+    }
+};
+person.introduce(); // Output: { name: 'John', age: 30, introduce: [Function: introduce] }
 
+->methods ke andar this hamesha us object ko point karega jiske andar wo method defined hai.
 
+//arrow function scope in method
+const person2 = {
+    name: "Jane",
+    age: 25,
+    introduce: () => {
+        console.log(this); // In an arrow function inside a method, 'this' does not refers to the object that the method is attached to
+    }
+};
+person2.introduce(); // Output: Window {...} (or global object in non-browser environments)
 
+->arrow function ke andar this keyword us object ko point nhi karega jiske andar wo method defined hai balki ye global object/window ko point karega.
 
+//arrow function in function in method 
+let obj = {
+    name: "Alice",
+    greet: function() {
+    let defg = () => {
+        console.log(this); // you can use regular function if you use it this keyword will point to window then.
+        but if you write it like this it will point to object
+    }   
+    defg();
+    }
+};
+obj.greet(); // Output: { name: 'Alice', greet: [Function: greet] }
 
+->arrow function hamseha apne parent scope ko point karega
 
+//event handlers
+const button = document.createElement('button');
+button.innerText = "Click Me";
+document.body.appendChild(button);
+button.addEventListener('click', function () {
+    console.log(this); // In an event handler, 'this' refers to the element that the event is attached to
+    this.style.backgroundColor = 'blue'; // Change button color on click
+});
 
+->this keyword event handler ke andar hamesha us element ko point karega jiske andar wo event attached hai.
+
+//class scope
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    introduce() {
+        console.log(this); // In a class method, 'this' refers to the instance of the class
+    }
+}
+const person = new Person("John", 30);
+const person2 = new Person("Jane", 25);
+person.introduce(); // Output: Person { name: 'John', age: 30 }
+person2.introduce(); // Output: Person { name: 'Jane', age: 25 }
+
+->this keyword class ke andar hamesha us class ke instance ko point karega jiske andar wo method defined hai.(blank object hoti hai)
+
+conclusion: this ki value
+global scope -> global object/window
+function scope -> global object/window
+method scope with es5 fnc-> object jiske andar method defined hai
+arrow function scope in method -> global object/window
+es5/normal function inside es5 method->window/global object
+arrow function inside es5 method-> object jiske andar method defined hai
+event handler -> element jiske andar event attached hai
+class-> blank object
+
+->lexical meaning physical
+
+-------------------------------------------------------------------
+
+-->call, apply and bind method
+function ko call karte waqt aap set kr sakte ho ki uski this ki balue kya hogi
+
+let obj={
+name:"sachin"
+}
+
+function abcd(){
+console.log(this.name);}
+
+abcd.call(obj); //sachin
+
+->another example
+let obj ={
+name:"harsh",
+age:20}
+
+function abcd(city,country){
+console.log(this.name + " " + this.age + " " + city + " " + country);
+}
+abcd.call(obj,"delhi","india"); //harsh 20 delhi india
+abcd.apply(obj,["delhi","india"]); //harsh 20 delhi india
+//diffrence between call and apply is that in call you pass arguments normally but in apply you pass arguments in array form.
+
+//bind method
+let boundFnc = abcd.bind(obj,"delhi","india");
+boundFnc(); //harsh 20 delhi india
+//bind method ek naya function return karta hai jisme this keyword ki value fix ho jaati hai.
 
 
 */
